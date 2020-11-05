@@ -37,6 +37,12 @@ RSpec.describe User, type: :model do
         expect(another_user.errors.full_messages).to include('Email has already been taken')
       end
 
+      it '@が無いemailは登録できない' do
+        @user.email = 'aiueo.sample.com'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Email is invalid')
+      end
+
       it 'passwordが空では登録できない' do
         @user.password = ''
         @user.valid?
