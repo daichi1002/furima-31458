@@ -67,13 +67,13 @@ RSpec.describe Item, type: :model do
       end
 
       it '価格が¥300以上でなければ出品できない' do
-        @item.amount_sold = '299'
+        @item.amount_sold = 299
         @item.valid?
         expect(@item.errors.full_messages).to include('Amount sold must be greater than or equal to 300')
       end
 
       it '価格が¥9,999,999以下でなければ出品できない' do
-        @item.amount_sold = '10000000'
+        @item.amount_sold = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include('Amount sold must be less than or equal to 9999999')
       end
